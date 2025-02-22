@@ -25,8 +25,8 @@ As root, do the following (all MacBook's and MacBook Pro's except MacBook8,1 (20
 echo -e "\n# applespi\napplespi\nspi_pxa2xx_platform\nintel_lpss_pci" >> /etc/initramfs-tools/modules
 
 apt install dkms
-git clone https://github.com/marc-git/macbook12-spi-driver.git /usr/src/applespi-0.1
-dkms install -m applespi -v 0.1
+git clone https://github.com/marc-git/macbook12-spi-driver.git /usr/src/appleibridge-0.1
+dkms install -m appleibridge -v 0.1
 ```
 
 If you're on a MacBook8,1 (2015):
@@ -34,8 +34,8 @@ If you're on a MacBook8,1 (2015):
 echo -e "\n# applespi\napplespi\nspi_pxa2xx_platform\nspi_pxa2xx_pci" >> /etc/initramfs-tools/modules
 
 apt install dkms
-git clone https://github.com/marc-git/macbook12-spi-driver.git /usr/src/applespi-0.1
-dkms install -m applespi -v 0.1
+git clone https://github.com/marc-git/macbook12-spi-driver.git /usr/src/appleibridge-0.1
+dkms install -m appleibridge -v 0.1
 ```
 
 Akmods module (RPM Fusion / Red Hat & co):
@@ -83,7 +83,7 @@ The ALS driver exposes the ambient light sensor; if you have the `iio-sensor-pro
 
 Upgrading:
 ----------
-The touchbar and ALS drivers used to be in a single module, `appletb`. This has now been split up into 3 modules, `apple_ibridge`, `apple_ib_tb`, and `apple_ib_als`. Generally whereever you were using `appletb` (e.g. in the initrd/dracut/whatever configs) you want to use `apple_ib_tb` now. Also, make sure to remove the old `appletb` module, either by first doing a `sudo dkms remove applespi/0.1 --all` before upgrading, or by manually removing the driver (e.g. `sudo find /lib/modules/ -name appletb.ko | xargs rm`).
+The touchbar and ALS drivers used to be in a single module, `appletb`. This has now been split up into 3 modules, `apple_ibridge`, `apple_ib_tb`, and `apple_ib_als`. Generally whereever you were using `appletb` (e.g. in the initrd/dracut/whatever configs) you want to use `apple_ib_tb` now. Also, make sure to remove the old `appletb` module, either by first doing a `sudo dkms remove appleibridge/0.1 --all` before upgrading, or by manually removing the driver (e.g. `sudo find /lib/modules/ -name appletb.ko | xargs rm`).
 
 Some useful threads:
 --------------------
