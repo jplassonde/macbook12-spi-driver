@@ -38,6 +38,14 @@ git clone https://github.com/marc-git/macbook12-spi-driver.git /usr/src/appleibr
 dkms install -m appleibridge -v 0.1
 ```
 
+If Touchbar doesn't start automatically, add the following workaround
+```
+cp touchbar-reset.service /etc/systemd/system/touchbar-reset.service
+systemctl daemon-reload
+systemctl enable touchbar-reset.service
+systemctl start touchbar-reset.service
+```
+
 Akmods module (RPM Fusion / Red Hat & co):
 ------------------------------------------
 You can build the akmod package from this repository:
