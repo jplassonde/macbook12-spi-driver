@@ -676,7 +676,7 @@ static struct platform_driver appleals_platform_driver = {
 		.name	= "apple-ib-als",
 	},
 	.probe = appleals_platform_probe,
-	.remove = appleals_platform_remove,
+	.remove = (void*)appleals_platform_remove,
 };
 
 module_platform_driver(appleals_platform_driver);

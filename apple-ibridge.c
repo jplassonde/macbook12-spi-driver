@@ -422,7 +422,7 @@ static int appleib_hid_event(struct hid_device *hdev, struct hid_field *field,
 	return appleib_forward_int_op(hdev, appleib_hid_event_fwd, &args);
 }
 
-static __u8 *appleib_report_fixup(struct hid_device *hdev, __u8 *rdesc,
+static const __u8 *appleib_report_fixup(struct hid_device *hdev, __u8 *rdesc,
 				  unsigned int *rsize)
 {
 	/* Some fields have a size of 64 bits, which according to HID 1.11
@@ -743,7 +743,7 @@ static void appleib_hid_remove(struct hid_device *hdev)
 	hid_hw_stop(hdev);
 }
 
-static const struct hid_driver appleib_hid_driver = {
+static struct hid_driver appleib_hid_driver = {
 	.name = "apple-ibridge-hid",
 	.id_table = appleib_hid_ids,
 	.probe = appleib_hid_probe,
@@ -898,7 +898,9 @@ MODULE_DEVICE_TABLE(acpi, appleib_acpi_match);
 static struct acpi_driver appleib_driver = {
 	.name		= "apple-ibridge",
 	.class		= "topcase", /* ? */
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 10, 0)
 	.owner		= THIS_MODULE,
+#endif
 	.ids		= appleib_acpi_match,
 	.ops		= {
 		.add		= appleib_probe,

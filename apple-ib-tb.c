@@ -1292,7 +1292,7 @@ static struct platform_driver appletb_platform_driver = {
 		.name	= "apple-ib-tb",
 	},
 	.probe = appletb_platform_probe,
-	.remove = appletb_platform_remove,
+	.remove = (void*)appletb_platform_remove,
 };
 
 module_platform_driver(appletb_platform_driver);
